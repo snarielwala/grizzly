@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+*This is a sample logback configuration file for the project
+
+1. Includes the base logback configuration file "base.xml", which includes a default console appender
+2. We have created a new default appender and the preferences for that appendera are as follows:
+	a. File Rolling Policy = Fixed Window Rolling Policy, Creation of a window of 50 files  (1-50)
+	b. New File Triggering Policy = Size Based Triggering, a new log file is created when file_size>50MB
+	c. Name and path of the log files: logs/project_name.i.log (i=1 to 50)
+3. We add this newly created appender for the entire root package, logging level for root set to "INFO"
+-->
+
+
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml" />
+	<logger name="org.springframework.web" level="INFO" />
+	<logger name="logging.level.org.hibernate" level="ERROR" />
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<file>logs/project_name.log</file>
+	<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+		<fileNamePattern>logs/project_name.%i.log.</fileNamePattern>
+		<minIndex>1</minIndex>
+		<maxIndex>50</maxIndex>
+	</rollingPolicy>
+		<append>true</append>
+		<encoder class="net.logstash.logback.encoder.LogstashEncoder">
+		</encoder>
+	<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+		<maxFileSize>50MB</maxFileSize>
+	</triggeringPolicy>
+	</appender>
+	<root level="INFO">
+		<appender-ref ref="FILE" />
+	</root>
+</configuration>

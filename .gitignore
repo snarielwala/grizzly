@@ -1,0 +1,46 @@
+# General
+.vagrant
+.DS_Store
+*~
+*.orig
+
+# IntelliJ
+.idea
+*.iml
+*.ipr
+*.iws
+
+# Spring Boot
+code/
+logs/
+bin/
+lib/
+target/
+_site/
+.settings/
+.classpath
+.project
+.metadata
+.factorypath
+.recommenders
+.springBeans
+interpolated*.xml
+dependency-reduced-pom.xml
+build.log
+.*.md.html
+manifest.yml
+MANIFEST.MF
+settings.xml
+activemq-data
+overridedb.*
+*.jar
+*.class
+
+# Gradle & Gradle Wrapper
+build/
+.gradle
+!gradle-wrapper.jar
+
+# Project Files
+!libs/*.jar
+tmp
